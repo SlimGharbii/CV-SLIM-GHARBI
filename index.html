@@ -86,19 +86,15 @@
               <div class="col-lg-6">
                 <ul>
                   <li><i class="icofont-rounded-right"></i> <strong>Age:</strong>
-                    p id="age"></p>
+                    <p id="age"></p>
 
 <script>
-    // Define the birth date in the format "YYYY-MM-DD"
     var birthDate = new Date('1994-10-31');
     
-    // Calculate the current year
     var currentYear = new Date().getFullYear();
     
-    // Calculate the age
     var age = currentYear - birthDate.getFullYear();
-    
-    // Display the age in the HTML element with id "age"
+
     document.getElementById("age").innerHTML = "Age: " + age;
 </script>
                   <li><i class="icofont-rounded-right"></i> <strong>Degree:</strong> Licence</li>
