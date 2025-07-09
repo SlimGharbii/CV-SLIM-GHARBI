@@ -373,8 +373,8 @@
 
           </div>
 
-          <div class="col-lg-8 mt-5 mt-lg-0">
-    <form id="contactForm" role="form" class="php-email-form" onsubmit="sendEmailToSelim(event)">
+        <div class="col-lg-8 mt-5 mt-lg-0">
+    <form id="contactForm" role="form" class="php-email-form">
         <div class="form-row">
             <div class="col-md-6 form-group">
                 <input title="name" type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required />
@@ -403,7 +403,7 @@
 </div>
 
 <script>
-function sendEmailToSelim(event) {
+document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault();
     
     // Show loading indicator
@@ -426,25 +426,24 @@ function sendEmailToSelim(event) {
     // Create mailto link
     const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Hide loading indicator
-    document.getElementById('loadingIndicator').style.display = 'none';
-    
+    // Try to open email client
     try {
-        // Open user's default email client
         window.location.href = mailtoLink;
         
         // Show success message after a short delay
         setTimeout(() => {
+            document.getElementById('loadingIndicator').style.display = 'none';
             document.getElementById('successMessage').style.display = 'block';
             
             // Optional: Reset the form
             document.getElementById('contactForm').reset();
         }, 500);
     } catch (error) {
+        document.getElementById('loadingIndicator').style.display = 'none';
         document.getElementById('errorMessage').style.display = 'block';
-        document.getElementById('errorMessage').textContent = 'Error opening email client: ' + error.message;
+        document.getElementById('errorMessage').textContent = 'Error: Could not open email client. Please email me directly at ' + recipient;
     }
-}
+});
 </script>
 
           </div>
