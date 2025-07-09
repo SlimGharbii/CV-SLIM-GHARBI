@@ -374,33 +374,78 @@
           </div>
 
           <div class="col-lg-8 mt-5 mt-lg-0">
+    <form id="contactForm" role="form" class="php-email-form" onsubmit="sendEmailToSelim(event)">
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <input title="name" type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required />
+                <div class="validate"></div>
+            </div>
+            <div class="col-md-6 form-group">
+                <input title="email" type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" required />
+                <div class="validate"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input title="subject" type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required />
+            <div class="validate"></div>
+        </div>
+        <div class="form-group">
+            <textarea title="message" class="form-control" name="message" id="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message" required></textarea>
+            <div class="validate"></div>
+        </div>
+        <div class="mb-3">
+            <div class="loading" id="loadingIndicator" style="display:none;">Loading</div>
+            <div class="error-message" id="errorMessage" style="display:none;"></div>
+            <div class="sent-message" id="successMessage" style="display:none;">Your message has been sent. Thank you!</div>
+        </div>
+        <div class="text-center"><button type="submit">Send Message</button></div>
+    </form>
+</div>
 
-            <form action="contact.php" method="post" role="form" class="php-email-form">
-              <div class="form-row">
-                <div class="col-md-6 form-group">
-                  <input title="name" type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
-                </div>
-                <div class="col-md-6 form-group">
-                  <input title="email" type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <input title="subject" type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <textarea title="message" class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                <div class="validate"></div>
-              </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message">Your message has been sent. Thank you!</div>
-                <div class="sent-message"></div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
+<script>
+function sendEmailToSelim(event) {
+    event.preventDefault();
+    
+    // Show loading indicator
+    document.getElementById('loadingIndicator').style.display = 'block';
+    document.getElementById('errorMessage').style.display = 'none';
+    document.getElementById('successMessage').style.display = 'none';
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    // Your email address
+    const recipient = "selimgharbi712@gmail.com";
+    
+    // Format the email content
+    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    
+    // Create mailto link
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Hide loading indicator
+    document.getElementById('loadingIndicator').style.display = 'none';
+    
+    try {
+        // Open user's default email client
+        window.location.href = mailtoLink;
+        
+        // Show success message after a short delay
+        setTimeout(() => {
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Optional: Reset the form
+            document.getElementById('contactForm').reset();
+        }, 500);
+    } catch (error) {
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('errorMessage').textContent = 'Error opening email client: ' + error.message;
+    }
+}
+</script>
 
           </div>
 
