@@ -45,8 +45,8 @@
       <p>I'm <span class="typed" data-typed-items="Developer, IT support,Product Engineer"></span></p>
       <div class="social-links">
         <a href="https://twitter.com/selimgharbi712" class="twitter" target="_blank"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/Aslimgharbiie/" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.instagram.com/slimgharbi7050/" class="instagram" target="_blank"><i class="bx bxl-instagram"></i></a>
+        <a href="https://www.facebook.com/slimgharbiie/" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/slimgharbiii/" class="instagram" target="_blank"><i class="bx bxl-instagram"></i></a>
         <a href="https://www.linkedin.com/in/slim-gharbi-446739117/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
          <a href="assets\Mycv.pdf" target="_blank" class="download"><i class="bx bx-download"></i></a>
       </div>
@@ -78,7 +78,7 @@
               <div class="col-lg-6">
                 <ul>
                   <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 31 oct 1994</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> https://bejewelled-crumble-62f2bc.netlify.app/</li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> https://slimresume.netlify.app//</li>
                   
                   <li><i class="icofont-rounded-right"></i> <strong>City:</strong> Menzel Bourguiba, Bizerte</li>
                 </ul>
@@ -365,7 +365,7 @@
               <div class="email">
                 <i class="icofont-envelope"></i>
                 <h4>Email:</h4>
-                <p><a href="mailto:contact@slimgharbi.com">contact@slimgharbi.com</a></p>
+                <p><a href="mailto:selimgharbi712@gmail.com">selimgharbi712@gmail.com</a></p>
               </div>
 
 
@@ -406,36 +406,29 @@
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault();
     
-    // Show loading indicator
     document.getElementById('loadingIndicator').style.display = 'block';
     document.getElementById('errorMessage').style.display = 'none';
     document.getElementById('successMessage').style.display = 'none';
     
-    // Get form values
+
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
-    
-    // Your email address
+
     const recipient = "selimgharbi712@gmail.com";
-    
-    // Format the email content
+
     const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-    
-    // Create mailto link
+
     const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Try to open email client
+
     try {
         window.location.href = mailtoLink;
-        
-        // Show success message after a short delay
+
         setTimeout(() => {
             document.getElementById('loadingIndicator').style.display = 'none';
             document.getElementById('successMessage').style.display = 'block';
-            
-            // Optional: Reset the form
+
             document.getElementById('contactForm').reset();
         }, 500);
     } catch (error) {
